@@ -1,3 +1,7 @@
+# OCR Handwriting Number
+## Genarator Data and Traning
+* gen_data_train.ipynb
+
 # Number sequence generator
 
 ## Prerequisites
@@ -24,7 +28,6 @@ img_seq = generate_numbers_sequence(sequence, (min_spacing, max_spacing),
 To understand the parameters available and return value please look at the docstring.
 
 ## How to execute tests
-To execute the tests run `python tests.py`
 
 ## Implementation details
 Normally for larger projects all the code would be arranged in a certain structure,
@@ -39,8 +42,6 @@ I opted to separate the code in 4 main scripts:
   this way, the dataset can be loaded from any other module, giving more power to the programmer,
   avoiding having to hardcode a specific dataset in the function and preventing unnecessary loading
   of the same dataset for every sequence.
-* tests.py - Self-explanatory, contains some basic checks to ensure that the function
-  behaves as expected. Can be extended to check for more things if necessary. Ideally
-  this script should be automatically executed before commits to the remote git to avoid
-  changes that could potentially break the main repository.
 * main.py - Entry point for quick testing using a command line tool.
+
+
