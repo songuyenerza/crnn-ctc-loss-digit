@@ -63,8 +63,8 @@ class DefocusBlur:
 
         n_channels = len(img.getbands())
         isgray = n_channels == 1
-        # c = [(3, 0.1), (4, 0.5), (6, 0.5), (8, 0.5), (10, 0.5)]
-        c = [(2, 0.1), (3, 0.1), (4, 0.1)]  # , (6, 0.5)] #prev 2 levels only
+        c = [(3, 0.1), (4, 0.5), (6, 0.5), (8, 0.5), (10, 0.5)]
+        # c = [(2, 0.1), (3, 0.1), (4, 0.1)]  # , (6, 0.5)] #prev 2 levels only
         if mag < 0 or mag >= len(c):
             index = self.rng.integers(0, len(c))
         else:
@@ -105,8 +105,8 @@ class MotionBlur:
 
         n_channels = len(img.getbands())
         isgray = n_channels == 1
-        # c = [(10, 3), (15, 5), (15, 8), (15, 12), (20, 15)]
-        c = [(10, 3), (12, 4), (14, 5)]
+        c = [(10, 3), (15, 5), (15, 8), (15, 12), (20, 15)]
+        # c = [(10, 3), (12, 4), (14, 5)]
         if mag < 0 or mag >= len(c):
             index = self.rng.integers(0, len(c))
         else:

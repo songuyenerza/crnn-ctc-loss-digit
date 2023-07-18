@@ -19,7 +19,7 @@ from io import BytesIO
 
 import numpy as np
 import skimage as sk
-from PIL import Image, ImageOps
+from PIL import Image, ImageOps, ImageEnhance
 from skimage import color
 
 '''
@@ -50,6 +50,29 @@ class Contrast:
 
         return Image.fromarray(img.astype(np.uint8))
 
+class LightAndShadow:
+    def __init__(self, rng=None):
+        self.rng = np.random.default_rng() if rng is None else rng
+
+    def __call__(self, img, prob=1.):
+        if self.rng.uniform(0, 1) > prob:
+            return img
+
+        brightness_range = [-0.7, 0.2]  # adjust brightness by up to 20%
+        contrast_range = [0.7, 1.3]  # adjust contrast by a factor of up to 1.5
+
+        # adjust brightness
+        brightness_factor = self.rng.uniform(*brightness_range)
+        enhancer = ImageEnhance.Brightness(img)
+        img = enhancer.enhance(1 + brightness_factor)
+
+        # # adjust contrast
+        # contrast_factor = self.rng.uniform(*contrast_range)
+        # enhancer = ImageEnhance.Contrast(img)
+        # img = enhancer.enhance(contrast_factor)
+
+        return img
+
 
 class Brightness:
     def __init__(self, rng=None):
@@ -60,8 +83,8 @@ class Brightness:
             return img
 
         # W, H = img.size
-        # c = [.1, .2, .3, .4, .5]
-        c = [.1, .2, .3]
+        c = [.1, .2, .3, .4, .5]
+        # c = [.1, .2, .3]
         if mag < 0 or mag >= len(c):
             index = self.rng.integers(0, len(c))
         else:
